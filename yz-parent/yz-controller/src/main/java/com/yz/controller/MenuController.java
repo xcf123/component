@@ -27,6 +27,7 @@ public class MenuController
     @RequestMapping("/menuList")
     public R getMenuList(){
         List<MenuEntity> menuList=menuService.getMenuList();
+        //xxxxxxxxxxxxxxxxxxxxxxxxx
         return R.ok().put("menuList",menuList);
     }
 

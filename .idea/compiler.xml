@@ -11,7 +11,6 @@
         <module name="yz-controller" />
         <module name="yz-dao" />
         <module name="yz-interfaces" />
-        <module name="yz-parent" />
         <module name="yz-service" />
       </profile>
     </annotationProcessing>
