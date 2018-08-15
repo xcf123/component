@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="service" />
+        <module name="yz-common" />
+        <module name="yz-controller" />
+        <module name="yz-dao" />
+        <module name="yz-interfaces" />
+        <module name="yz-parent" />
+        <module name="yz-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="parent" target="1.8" />
+      <module name="service" target="1.8" />
+      <module name="yz-common" target="1.8" />
+      <module name="yz-controller" target="1.8" />
+      <module name="yz-dao" target="1.8" />
+      <module name="yz-interfaces" target="1.8" />
+      <module name="yz-parent" target="1.8" />
+      <module name="yz-service" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

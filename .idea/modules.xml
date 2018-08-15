@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/yz-parent/parent.iml" filepath="$PROJECT_DIR$/yz-parent/parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yz-parent/yz-common/yz-common.iml" filepath="$PROJECT_DIR$/yz-parent/yz-common/yz-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yz-parent/yz-controller/yz-controller.iml" filepath="$PROJECT_DIR$/yz-parent/yz-controller/yz-controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yz-parent/yz-dao/yz-dao.iml" filepath="$PROJECT_DIR$/yz-parent/yz-dao/yz-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yz-parent/yz-interfaces/yz-interfaces.iml" filepath="$PROJECT_DIR$/yz-parent/yz-interfaces/yz-interfaces.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yz-parent/yz-parent.iml" filepath="$PROJECT_DIR$/yz-parent/yz-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yz-parent/yz-service/yz-service.iml" filepath="$PROJECT_DIR$/yz-parent/yz-service/yz-service.iml" />
+    </modules>
+  </component>
+</project>

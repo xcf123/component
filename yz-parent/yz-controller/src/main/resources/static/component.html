@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="plugins/element2.3.8/theme-chalk/index.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="plugins/element2.3.8/theme-chalk/index.css">
+    <link rel="stylesheet" href="plugins/editor/css/editormd.min.css">
+</head>
+<style>
+    [v-cloak]{
+        display: none;
+    }
+</style>
+<body>
+<div id="comp" v-cloak>
+<div>
+<el-button @click="toWrite(component.menuId)">编辑</el-button>
+</div>
+    <div v-html="component.htmlContent">
+       <!-- {{component.htmlContent}}-->
+    </div>
+<!--<div id="mdToHtml" style="padding: 0px" >
+<textarea style="display:none;" v-pre ></textarea>
+</div>-->
+</div>
+
+
+<script src="libs/axios.min.js"></script>
+<script src="libs/vue.2.5.16.js"></script>
+<script src="plugins/element2.3.8/index.js"></script>
+<script src="js/getUrlParam.js"></script>
+
+<script src="plugins/jquery/jquery.min.js"></script>
+<script src="plugins/editor/lib/marked.min.js"></script>
+<script src="plugins/editor/lib/prettify.min.js"></script>
+<script src="plugins/editor/lib/raphael.min.js"></script>
+<script src="plugins/editor/lib/underscore.min.js"></script>
+<script src="plugins/editor/lib/sequence-diagram.min.js"></script>
+<script src="plugins/editor/lib/flowchart.min.js"></script>
+<script src="plugins/editor/lib/jquery.flowchart.min.js"></script>
+<script src="plugins/editor/editormd.min.js"></script>
+
+</body>
+<script>
+    var vm=new Vue({
+        el:'#comp',
+        data:{
+            component:{
+                id:null,
+                menuId:"",
+                name:"",
+                content:"",
+                createTime:"",
+                modifyTime:"",
+                htmlContent:""
+            }
+        },
+        methods:{
+            getComp:function () {
+                var _this=this;
+
+                var id = UrlParam.param("id");
+                var storage=window.localStorage;
+                var item = storage.getItem("component");
+                axios.post("/component/info",
+                    {menuId:id})
+                    .then(function(resp){
+                        if(resp.data.component==null ){
+                            _this.component.htmlContent="暂无内容";
+                            storage.clear();
+                        }else{
+                            _this.component=resp.data.component;
+                            storage.setItem("component",JSON.stringify(_this.component));
+                        }
+
+                    })
+                /*if(item != null && item != undefined && item != ''){
+                    _this.component=JSON.parse(item);
+                }else {
+                    axios.post("/component/info",
+                        {menuId:id})
+                        .then(function(resp){
+                            _this.component=resp.data.component;
+                            storage.setItem("component",JSON.stringify(_this.component));
+                        })
+                }*/
+
+               /* this.tran();*/
+            },
+            toWrite:function (id) {
+                location.href="write.html";
+            },
+            /*tran:function () {
+                var testEditor;
+                    testEditor = editormd.markdownToHTML("mdToHtml", {//注意：这里是上面DIV的id
+                        htmlDecode : "style,script,iframe",
+                        emoji : true,
+                        taskList : true,
+                        tex : true, // 默认不解析
+                        flowChart : true, // 默认不解析
+                        sequenceDiagram : true, // 默认不解析
+                        codeFold : true
+                    });
+            }*/
+        },
+        created: function(){
+            this.getComp();
+        }
+    })
+</script>
+</html>

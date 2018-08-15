@@ -1,0 +1,159 @@
+body{
+    background: #f1f2f6;
+    margin: 0;
+}
+
+
+hr{
+    height:1px;border:none;border-top:1px solid #dcdfe6;;
+}
+
+i.icon{
+    display: inline-block;
+}
+i.icon.icon-att{
+    width: 15px;
+    height: 15px;
+    background: url("../image/icon-att.png") no-repeat;
+}
+i.icon.icon-finish{
+    width: 28px;
+    height: 28px;
+    background: url("../image/icon-finish.png") no-repeat;
+}
+i.icon.icon-down{
+    width: 20px;
+    height: 20px;
+    background: url("../image/icon-down.png") no-repeat;
+}
+i.icon.icon-up{
+    width: 20px;
+    height: 20px;
+    background: url("../image/icon-down.png") no-repeat;
+    transform: rotate(180deg);
+}
+i.icon.icon-right{
+    width: 20px;
+    height: 20px;
+    background: url("../image/icon-right.png") no-repeat;
+}
+i.icon.icon-upload{
+    width: 54px;
+    height: 44px;
+    background: url("../image/icon-upload.png") no-repeat;
+}
+.u-icon-num-big{
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    border: 1px solid #666;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+}
+.u-icon-num-big.fill{
+    border-radius: 50%;
+    border: 1px solid #1890FF;
+    background: #1890FF;
+    color:white;
+}
+
+.u-icon-num{
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: #999999;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 18px;
+    color: white;
+    margin-right: 6px;
+    font-size: 14px;
+    font-family: sans-serif;
+}
+[v-cloak] {
+    display: none;
+}
+.cut-text{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.card-content{
+    margin: 25px;
+    border-radius: 3px;
+    background: white;
+}
+.card-content.padding{
+   padding:25px;
+}
+.top-bar-content{
+    min-height: 60px;
+    background: white;
+    padding:0 25px;
+}
+.el-table{
+    margin: 10px 0;
+}
+.el-table th{
+    background-color: rgba(249,249,249,1);
+    color:#333333;
+}
+
+/** 图片卡片组件*/
+.img-card-item{
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.img-card-item .img-card-item-img{
+    display: inline-flex;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ddd;
+    font-size: 40px;
+}
+.img-card-item .img-card-item-img img{
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+}
+.img-card-item .img-card-item-bar{
+    display: flex;
+    padding: 0 10px;
+    flex: 1;
+    justify-content: space-between;
+}
+.img-card-item .img-card-item-bar .card-bar-line{
+    display: flex;
+    justify-content: space-around;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.card-bar-line .bar-info{
+    display: inline-block;
+    width: 100%;
+}
+
+div.table-title{
+    text-align:center;
+    font-size: 14px;
+    color: #333;
+}
+
+.drawing-input,
+.camera-input,
+.video-input{
+    border:1px dashed #d9d9d9;
+    padding: 12px;
+    border-radius: 6px;
+}
+
+.sub-area{
+    border:1px dashed #d9d9d9;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}

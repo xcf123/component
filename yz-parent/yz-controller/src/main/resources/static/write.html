@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑</title>
+    <link rel="stylesheet" href="plugins/element2.3.8/theme-chalk/index.css">
+    <link rel="stylesheet" href="plugins/editor/css/editormd.min.css">
+</head>
+<body>
+
+<div id="editmd">
+    <div id="editormd-view">
+        <textarea class="editormd-view-markdown-doc" id="content" name="content"
+                  v-model="component.content">
+        </textarea>
+        <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
+        <textarea class="editormd-view-html-doc"  id="html" name="html"></textarea>
+    </div>
+    <div>
+        <el-button type="primary" plain @click="saveOrUpdate()">保存</el-button>
+        <el-button type="primary" plain  @click="cancel()">取消</el-button>
+        <el-button type="primary" plain @click="alert()">html语句</el-button>
+    </div>
+</div>
+</body>
+<script src="plugins/jquery/jquery.min.js"></script>
+<script src="plugins/editor/editormd.min.js"></script>
+<script src="libs/vue.2.5.16.js"></script>
+<script src="libs/axios.min.js"></script>
+<script src="plugins/element2.3.8/index.js"></script>
+<script>
+    var vmm =new Vue({
+        el:'#editmd',
+        data:{
+            component:{
+                content:''
+            },
+            testEditor:null,
+            saveContent:''
+        },
+        created:function () {
+            var _this=this;
+            this.getComp();
+
+            //    调用编辑器
+
+            $(function() {
+               _this.testEditor = editormd("editormd-view", {
+                    width   : "90%",
+                    height  : 640,
+                    syncScrolling : "single",
+                    saveHTMLToTextarea : true,
+                    path    : "plugins/editor/lib/"
+                });
+            });
+        },
+        methods:{
+            getComp:function () {
+                var _this=this;
+                debugger
+                var storage=window.localStorage;
+                var item = storage.getItem("component");
+                if(item != null && item != undefined && item != ''){ // "",null,undefined
+                    _this.component=JSON.parse(item);
+                    console.log(_this.component);
+                    _this.savedContent = item;
+                }
+            },
+            saveOrUpdate:function () {
+                var _this = this;
+                var storage=window.localStorage;
+                _this.component.content=_this.testEditor.getMarkdown();
+                _this.component.htmlContent = _this.testEditor.getHTML();
+                debugger
+                if(_this.component.id){
+                    axios.post("component/update",_this.component)
+                        .then(function (resp) {
+                            if(resp.data.code == 0){
+                                storage.setItem("component",JSON.stringify(_this.component)) ;
+                                _this.$message({
+                                    message: '保存成功',
+                                    type: 'success'
+                                });
+                                location.href="component.html";
+                            }else{
+                                _this.$message({
+                                    message: '保存异常',
+                                    type: 'warning'
+                                });
+                            }
+                        })
+                }
+            },
+            alert:function () {
+                var _this=this;
+                var html2 = _this.testEditor.getHTML();
+                alert(html2);
+            },
+            cancel:function () {
+                if(JSON.stringify(this.component)!=this.savedContent){
+                    this.$confirm('数据未保存，确定要离开吗？', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(function(){
+                        location.href="component.html";
+                    })
+                    return;
+                }
+                location.href = "component.html";
+            }
+        }
+    })
+</script>
+
+</html>
